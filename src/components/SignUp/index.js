@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FirebaseAuth } from "../../provider/AuthProvider";
+import { withRouter } from "react-router-dom";
 
 const SignUp = () => {
   const { handleSignUp, inputs, setInputs, errors } = useContext(FirebaseAuth);
@@ -32,10 +33,14 @@ const SignUp = () => {
       />
       <button>Sign up</button>
       {errors.length > 0
-        ? [...new Set(errors)].map((error) => <p style={{ color: "red" }} key="">{error}</p>)
+        ? [...new Set(errors)].map((error) => (
+            <p style={{ color: "red" }} key="">
+              {error}
+            </p>
+          ))
         : null}
     </form>
   );
 };
 
-export default SignUp;
+export default withRouter(SignUp);
